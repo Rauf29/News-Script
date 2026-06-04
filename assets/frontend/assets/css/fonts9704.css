@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'SolaimanLipi';
+    src: url('../fonts/solaiman-lipi.ttf');
+}
+
+@font-face {
+    font-family: 'AdorshoLipi';
+    src: url('../fonts/AdorshoLipi_20-07-2007.ttf');
+}
+
+@font-face {
+    font-family: 'MartelSans';
+    src: url('../fonts/MartelSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Galada';
+    src: url('../fonts/Galada-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'HindSiliguri';
+    src: url('../fonts/HindSiliguri-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'NunitoSans-Bold';
+    src: url('../fonts/NunitoSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'NunitoSans';
+    src: url('../fonts/NunitoSans-Black.ttf');
+}
