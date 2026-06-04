@@ -621,6 +621,18 @@ class FrontendController extends Controller
         return view('frontend.postBySubcategory',$data);
     }
 
+    public function allPollResult(){
+        if(session()->has('language')){
+            $default_language = Language::find(session()->get('language'));
+        }else{
+            $default_language = Language::where('is_default',1)->first();
+        }
+        $data['polls'] = PollQuestion::orderBy('id','desc')
+                                ->where('language_id','=',$default_language->id)
+                                ->get();
+        return view('frontend.all_poll_result', $data);
+    }
+
     public function allPoll(){
         if(session()->has('language')){
             $default_language = Language::find(session()->get('language'));

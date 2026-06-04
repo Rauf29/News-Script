@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Role;
+use Brian2694\Toastr\Facades\Toastr;
 use Datatables;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
@@ -38,6 +39,15 @@ class AdministerController extends Controller
     }
     public function index(){
         return view('admin.administrator.index');
+    }
+
+    public function create(){
+        return view('admin.administrator.create');
+    }
+
+    public function store(Request $request){
+        Toastr::error('Coming soon');
+        return redirect()->back();
     }
 
     public function edit($id){

@@ -153,6 +153,31 @@ class PollController extends Controller
         }
     }
 
+    public function pollcreate($id){
+        $data = PollQuestion::find($id);
+        return view('admin.polls.poll_create', compact('data'));
+    }
+
+    public function pollstore(Request $request){
+        Toastr::error('Coming soon');
+        return redirect()->back();
+    }
+
+    public function polledit($id){
+        $data = PollAnswer::find($id);
+        return view('admin.polls.poll_edit', compact('data'));
+    }
+
+    public function pollupdate(Request $request, $id){
+        Toastr::error('Coming soon');
+        return redirect()->back();
+    }
+
+    public function optiondelete($id){
+        Toastr::error('Coming soon');
+        return redirect()->back();
+    }
+
     public function delete($id){
 
         $data = PollQuestion::find($id);

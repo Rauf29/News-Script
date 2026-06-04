@@ -108,7 +108,58 @@
         </li>
     </ul>
 </li>
-  
+
+<li>
+    <a href="#polls" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+        <i class="fa fa-poll"></i>{{ __('Polls') }}
+    </a>
+    <ul class="collapse list-unstyled" id="polls" data-parent="#accordion">
+        <li>
+            <a href="{{ route('addPolls.index') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Polls') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('addPolls.create') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Add Poll') }}</span></a>
+        </li>
+    </ul>
+</li>
+
+<li>
+    <a href="#widgets" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+        <i class="fa fa-puzzle-piece"></i>{{ __('Widgets') }}
+    </a>
+    <ul class="collapse list-unstyled" id="widgets" data-parent="#accordion">
+        <li>
+            <a href="{{ route('widget.index') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Widgets') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('widget.create') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Add Widget') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('widget.settings') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Widget Settings') }}</span></a>
+        </li>
+    </ul>
+</li>
+
+<li>
+    <a href="#ads" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+        <i class="fa fa-ad"></i>{{ __('Ads') }}
+    </a>
+    <ul class="collapse list-unstyled" id="ads" data-parent="#accordion">
+        <li>
+            <a href="{{ route('ads.index') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Ads') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('ads.create') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Add Ad') }}</span></a>
+        </li>
+    </ul>
+</li>
+
+<li>
+    <a href="{{ route('fonts.index') }}" >
+        <i class="fa fa-font"></i>{{ __('Fonts') }}
+    </a>
+</li>
+
 <li>
     <a href="#general" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
         <i class="fas fa-cogs"></i>{{__('General Settings')}}
@@ -135,6 +186,12 @@
         <li>
             <a href="{{route('admin.generalsettings.footer')}}"><span><i class="fas fa-angle-double-right"></i>{{__('Footer')}}</span></a>
         </li>
+        <li>
+            <a href="{{route('admin.generalsettings.errorPage')}}"><span><i class="fas fa-angle-double-right"></i>{{__('Error Page')}}</span></a>
+        </li>
+        <li>
+            <a href="{{route('admin.generalsettings.popularTags')}}"><span><i class="fas fa-angle-double-right"></i>{{__('Popular Tags')}}</span></a>
+        </li>
 
     </ul>
 </li>
@@ -146,6 +203,8 @@
     </a>
     <ul class="collapse list-unstyled" id="socials" data-parent="#accordion">
             <li><a href="{{route('social.link.index')}}"><span><i class="fas fa-angle-double-right"></i>{{ __('Social Links') }}</span></a></li>
+            <li><a href="{{route('social.settings.google')}}"><span><i class="fas fa-angle-double-right"></i>{{ __('Google Login') }}</span></a></li>
+            <li><a href="{{route('social.settings.facebook')}}"><span><i class="fas fa-angle-double-right"></i>{{ __('Facebook Login') }}</span></a></li>
     </ul>
 </li>
 
@@ -157,6 +216,7 @@
     <ul class="collapse list-unstyled" id="emails" data-parent="#accordion">
         <li><a href="{{route('admin.email.config')}}"><span><i class="fas fa-angle-double-right"></i>{{__('Email Configurations')}}</span></a></li>
         <li><a href="{{ route('admin.subscriber.index') }}"><span><i class="fas fa-angle-double-right"></i>{{__('Subscribers')}}</span></a></li>  
+        <li><a href="{{ route('admin.email.group') }}"><span><i class="fas fa-angle-double-right"></i>{{__('Email Group')}}</span></a></li>  
     </ul>
 </li>
 
@@ -177,7 +237,26 @@
 </li>
 
 <li>
-    <a href="{{ route('admin.sitemap.all') }}" class=" wave-effect"><i class="fas fa-sitemap"></i>{{ __('Site Map') }}</a>
+    <a href="#sitemap" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+        <i class="fas fa-sitemap"></i>{{ __('Site Map') }}
+    </a>
+    <ul class="collapse list-unstyled" id="sitemap" data-parent="#accordion">
+        <li>
+            <a href="{{ route('admin.sitemap.all') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('All Sitemaps') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('sitemap.index') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Sitemap Index') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('sitemap.categories') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Categories Sitemap') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('sitemap.subcategories') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Subcategories Sitemap') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('sitemap.posts') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Posts Sitemap') }}</span></a>
+        </li>
+    </ul>
 </li>
 
 

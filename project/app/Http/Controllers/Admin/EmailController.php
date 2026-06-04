@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\GeneralSettings;
@@ -19,5 +20,10 @@ class EmailController extends Controller
     }
     public function group(){
         return view('admin.email.group');
+    }
+
+    public function groupmailsend(Request $request){
+        Toastr::error('Coming soon');
+        return redirect()->back();
     }
 }

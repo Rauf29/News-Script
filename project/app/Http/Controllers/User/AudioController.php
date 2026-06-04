@@ -61,6 +61,10 @@ class AudioController extends Controller
         return $output;
     }
 
+    public function slugCheck(Request $request){
+        return response()->json(['status' => true]);
+    }
+
     public function slugCreate(Request $request){
         $data = 1;
         $val =  $request->title;

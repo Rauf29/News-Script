@@ -4,7 +4,7 @@
             <title>{{ $post->title }}</title>
             <pubDate>{{ $post->created_at->tz('UTC')->toAtomString() }}</pubDate>
             <description>{{ $post->description }}</description>
-            <link>{{ route('frontend.details',[$post->id,$post->slug])}}</link>
+            <link>{{ route('frontend.postBySubcategory.details',[$post->id,$post->slug])}}</link>
         </item>
     @endforeach
 </urlset>

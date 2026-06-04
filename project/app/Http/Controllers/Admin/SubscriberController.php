@@ -11,7 +11,8 @@ use Datatables;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use App\Classes\geniusMailer;
-
+use Brian2694\Toastr\Facades\Toastr;
+ 
 class SubscriberController extends Controller
 {
     public function __construct()
@@ -50,6 +51,11 @@ class SubscriberController extends Controller
         $gs = Generalsettings::findOrFail(1);
         $subscribers = Subscriber::all();
 
+        if ($subscribers->isEmpty()) {
+            Toastr::error('No subscribers found.');
+            return redirect()->back();
+        }
+
         foreach($subscribers as $subscriber){
 
             if($gs->is_smtp == 1)
@@ -66,11 +72,11 @@ class SubscriberController extends Controller
 	        else
 	        {
 	        $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
-	        mail($subscriber->email,$request->subject,$request->body,$headers);
+	        @mail($subscriber->email,$request->subject,$request->body,$headers);
             }        
 
         }
-        $msg = 'Mail Send to Subscribers';
-        return response()->json($msg);
+        Toastr::success('Mail sent to all subscribers successfully!');
+        return redirect()->back();
     }
 }

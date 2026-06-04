@@ -29,25 +29,9 @@
                         <div class="gocover" style="background: url({{asset('assets/images/'.$gs->admin_loader)}}) no-repeat scroll center center rgba(45, 45, 45, 0.5);"></div>
                       <form id="geniusform" action="{{route('admin.subscriber.sendemail')}}" method="POST" enctype="multipart/form-data">
 
-                        @include('includes.admin.form-success')
                         @include('includes.admin.flash-message')
 
                         {{csrf_field()}}
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <div class="left-area">
-                                <h4 class="heading">{{ __('Select User Type') }}*</h4>
-                            </div>
-                          </div>
-                          <div class="col-lg-12">
-                              <select name="type" >
-                                <option value=""> {{ __('Choose User Type') }} </option>
-                                <option value="0">{{ __('Customers') }}</option>
-                                <option value="1">{{ __('Vendors') }}</option>
-                              </select>
-                          </div>
-                        </div>
-
                         <div class="row">
                           <div class="col-lg-12">
                             <div class="left-area">

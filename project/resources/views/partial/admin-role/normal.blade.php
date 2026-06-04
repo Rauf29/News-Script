@@ -157,6 +157,12 @@
         <li>
             <a href="{{route('admin.generalsettings.footer')}}"><span>Footer</span></a>
         </li>
+        <li>
+            <a href="{{route('admin.generalsettings.errorPage')}}"><span><i class="fas fa-angle-double-right"></i>{{__('Error Page')}}</span></a>
+        </li>
+        <li>
+            <a href="{{route('admin.generalsettings.popularTags')}}"><span><i class="fas fa-angle-double-right"></i>{{__('Popular Tags')}}</span></a>
+        </li>
         
 
     </ul>
@@ -171,6 +177,8 @@
     </a>
     <ul class="collapse list-unstyled" id="socials" data-parent="#accordion">
             <li><a href="{{route('social.link.index')}}"><span>{{ __('Social Links') }}</span></a></li>
+            <li><a href="{{route('social.settings.google')}}"><span><i class="fas fa-angle-double-right"></i>{{ __('Google Login') }}</span></a></li>
+            <li><a href="{{route('social.settings.facebook')}}"><span><i class="fas fa-angle-double-right"></i>{{ __('Facebook Login') }}</span></a></li>
     </ul>
 </li>
 @endif
@@ -184,6 +192,7 @@
     <ul class="collapse list-unstyled" id="emails" data-parent="#accordion">
         <li><a href="{{route('admin.email.config')}}"><span>Email Configurations</span></a></li>
         <li><a href="{{ route('admin.subscriber.index') }}"><span>Subscribers</span></a></li>    
+        <li><a href="{{ route('admin.email.group') }}"><span><i class="fas fa-angle-double-right"></i>{{__('Email Group')}}</span></a></li>    
     </ul>
 </li>
 @endif
@@ -209,7 +218,26 @@
 
 @if (Auth::guard('admin')->user()->sectionCheck('site_map'))  
 <li>
-    <a href="{{ route('admin.sitemap.all') }}" class=" wave-effect"><i class="fas fa-sitemap"></i>{{ __('Site Map') }}</a>
+    <a href="#sitemap" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+        <i class="fas fa-sitemap"></i>{{ __('Site Map') }}
+    </a>
+    <ul class="collapse list-unstyled" id="sitemap" data-parent="#accordion">
+        <li>
+            <a href="{{ route('admin.sitemap.all') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('All Sitemaps') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('sitemap.index') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Sitemap Index') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('sitemap.categories') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Categories Sitemap') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('sitemap.subcategories') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Subcategories Sitemap') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('sitemap.posts') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Posts Sitemap') }}</span></a>
+        </li>
+    </ul>
 </li>
 @endif
 
@@ -224,7 +252,17 @@
 
 @if (Auth::guard('admin')->user()->sectionCheck('user_management'))
 <li>
-    <a href="{{ route('admin.staff.index') }}" class=" wave-effect"><i class="fas fa-user-secret"></i>{{ __('User Management') }}</a>
+    <a href="#users" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+        <i class="fas fa-user-secret"></i>{{ __('Users Management') }}
+    </a>
+    <ul class="collapse list-unstyled" id="users" data-parent="#accordion">
+        <li>
+            <a href="{{ route('admin.staff.index') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Users') }}</span></a>
+        </li>
+        <li>
+            <a href="{{ route('admin.administator.index') }}"><span><i class="fas fa-angle-double-right"></i>{{ __('Administrator') }}</span></a>
+        </li>
+    </ul>
 </li>   
 @endif
 
