@@ -243,34 +243,47 @@ jQuery(document).ready(function () {
 
 
 
-    jQuery('.dropdown_menu_hover').hover(function () {
-        jQuery(this).parent('div').find('nav').css({
-            'opacity': '0'
-        });
-        jQuery(this).find(".dropdown_menu").fadeIn();
+    // Notification dropdown click toggle
+    jQuery('#dropdownNotification').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $container = jQuery(this).closest('.dropdown_menu_hover');
+        var $dropdown = $container.find(".dropdown_menu");
 
-        var w = (parseInt(jQuery(this).find('a:first-child').width()) - (parseInt(jQuery(this)
-            .find(
-                'a:first-child').css('padding-left').replace('px', '')) + parseInt(
-                    jQuery(
-                        this).find('a:first-child').css('padding-right').replace('px', '')))) / 2 +
-            parseInt(jQuery(this).offset().left);
-        var ww = parseInt(jQuery(this).find(".dropdown_menu").offset()
-            .left) /* + parseInt(jQuery(this).css('padding-left').replace('px',''))*/;
+        if ($dropdown.is(':visible')) {
+            $dropdown.fadeOut();
+            $container.parent('div').find('nav').css({'opacity': '1'});
+            jQuery('body').find('#dynamicArrow').remove();
+        } else {
+            jQuery('.dropdown_menu_hover').find(".dropdown_menu").not($dropdown).fadeOut();
+            $container.parent('div').find('nav').css({'opacity': '0'});
+            $dropdown.fadeIn();
 
-        w = w - ww;
+            var w = (parseInt($container.find('a:first-child').width()) - (parseInt($container.find('a:first-child').css('padding-left').replace('px', '')) + parseInt($container.find('a:first-child').css('padding-right').replace('px', '')))) / 2 + parseInt($container.offset().left);
+            var ww = parseInt($dropdown.offset().left);
+            w = w - ww;
 
+            jQuery('body').find('#dynamicArrow').remove();
+            var css = '.dropdown-menu:before{ left:' + w + 'px !important; right:' + (w + 10) + 'px !important;}.dropdown-menu:after{ left:' + (w + 1) + 'px !important; right:' + (w + 11) + 'px !important}';
+            jQuery('body').append('<div id="dynamicArrow"><style>' + css + '</style></div>');
+        }
+    });
+
+    // Notification close button
+    jQuery('.dropdownNotificationClose').on('click', function (e) {
+        e.stopPropagation();
+        jQuery('.dropdownNotification').fadeOut();
+        jQuery('.dropdown_menu_hover').parent('div').find('nav').css({'opacity': '1'});
         jQuery('body').find('#dynamicArrow').remove();
-        var css = '.dropdown-menu:before{ left:' + w + 'px !important; right:' + (w + 10) +
-            'px !important;}.dropdown-menu:after{ left:' + (w + 1) + 'px !important; right:' + (
-                w + 11) + 'px !important}';
-        jQuery('body').append('<div id="dynamicArrow"><style>' + css + '</style></div>');
-    }, function () {
-        jQuery(this).parent('div').find('nav').css({
-            'opacity': '1'
-        });
-        jQuery(this).find(".dropdown_menu").hide();
-        jQuery('body').find('#dynamicArrow').remove();
+    });
+
+    // Close notification on click outside
+    jQuery(document).on('click', function(e) {
+        if (!jQuery(e.target).closest('.dropdownNotification, #dropdownNotification, .dropdownNotificationClose').length) {
+            jQuery('.dropdownNotification').fadeOut();
+            jQuery('.dropdown_menu_hover').parent('div').find('nav').css({'opacity': '1'});
+            jQuery('body').find('#dynamicArrow').remove();
+        }
     });
 
 

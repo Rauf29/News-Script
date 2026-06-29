@@ -1,5 +1,4 @@
 @extends('layouts.front')
-@section('contents')
 @section('meta')
 <meta name="Description" content="{!! $seo->meta_description !!}">
 <meta name="Keywords" content="{!! $seo->meta_keys !!}">
@@ -7,6 +6,7 @@
 <meta property="og:description" content="{!! $seo->meta_description !!}" />
 <meta property="og:image" content="{{asset('assets/images/'.$gs->og_baner)}}" />
 @endsection
+@section('contents')
 
                <section id="top-lead-content">
     <div class="container-fluid">
@@ -144,14 +144,14 @@
                             <ul>
                                 <li class="active" data-id="video">
                                     <img style="width:20px; margin-right: 5px" src="{{asset('assets/frontend/assets/images/video-stories.png')}}">
-                                    <a _href="https://news.banglawebs.com/news01/archives/videogallery">
+                                    <a href="{{ route('frontend.index') }}">
                                         ভিডিও স্টোরি
                                     </a>
                                 </li>
 
                                 <li data-id="photo">
                                     <img style="width:20px; margin-right: 5px" src="{{asset('assets/frontend/assets/images/photo-stories.png')}}">
-                                    <a _href="https://news.banglawebs.com/news01/archives/photogallery">
+                                    <a href="{{ route('frontend.index') }}">
                                         ফটো স্টোরি
                                     </a>
                                 </li>
@@ -1029,7 +1029,7 @@
                                                     <div class="common-card-content position-relative ">
                                                         <div class="image-lead position-relative text-center">
                                                             <span class="imgWrep">
-                                                                <img width="500" height="280" src="{{asset('assets/images/post/'.$row->image_big)}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" srcset="{{asset('assets/images/post/'.$row->image_big)}} 500w, {{asset('assets/images/post/'.$row->image_big)}} 300w, https://news.banglawebs.com/news01/wp-content/uploads/2024/12/pororassto-gfghfv-768x432.webp 768w, {{asset('assets/images/post/'.$row->image_big)}} 800w" sizes="(max-width: 500px) 100vw, 500px" />                                                            </span>
+                                                                <img width="500" height="280" src="{{asset('assets/images/post/'.$row->image_big)}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" srcset="{{asset('assets/images/post/'.$row->image_big)}} 500w, {{asset('assets/images/post/'.$row->image_big)}} 300w, {{asset('assets/images/post/'.$row->image_big)}} 768w, {{asset('assets/images/post/'.$row->image_big)}} 800w" sizes="(max-width: 500px) 100vw, 500px" />                                                            </span>
                                                             <a class="link" href="{{ route('frontend.postBySubcategory.details',[$row->id,$row->slug])}}"></a>
                                                         </div>
                                                         <div class="news-content-box">

@@ -34,6 +34,9 @@ class User extends Authenticatable
         'twofa',
         'go',
         'details',
+        'token',
+        'status',
+        'verify',
      ];
 
     /**
@@ -57,4 +60,9 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\Models\Post','user_id');
     }
+
+    public function IsVendor(){
+        return false;
+    }
+
 }

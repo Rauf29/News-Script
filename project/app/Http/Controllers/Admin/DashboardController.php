@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 class DashboardController extends Controller
@@ -99,6 +100,9 @@ class DashboardController extends Controller
             }else{
                 return response()->json(array('errors' => [ 0 => 'Current password Does not match.' ]));
             }
+        }
+        if (!isset($input)) {
+            $input = [];
         }
         $admin->update($input);
         $msg = 'Successfully change your password';

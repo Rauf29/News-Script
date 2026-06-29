@@ -576,7 +576,7 @@
                         <div class="col-lg-12">
                             <div class="product-description">
                                 <div class="body-area">
-                                    <div class="row" @if($data->schedule_post == 0) ? style="display:none;" : style="display:block;" @endif>
+                                    <div class="row" style="{{ $data->schedule_post == 0 ? 'display:none;' : 'display:block;' }}">
                                         <div class="col-lg-12">
                                             <div class="left-area">
                                                 <h4 class="heading">{{ __('Schedule Post') }}</h4>

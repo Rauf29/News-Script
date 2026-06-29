@@ -1,10 +1,10 @@
 @extends('layouts.front')
-@section('contents')
-    @section('meta')
+@section('meta')
 <title>{{$data->title}}</title>
 <meta property="og:title" content="{{$data->title}}" />
 <meta property="og:image" content="{{asset('assets/images/'.$gs->og_baner)}}" />
-@endsection	
+@endsection
+@section('contents')
 @push('css')
 
 @endpush

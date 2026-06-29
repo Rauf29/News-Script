@@ -23,9 +23,13 @@ class geniusMailer
     {
         $this->gs = GeneralSettings::findOrFail(1);
 
-        $this->mail = new PHPMailer(true);
+        try {
+            $this->mail = new PHPMailer();
+        } catch (\Throwable $e) {
+            $this->mail = null;
+        }
 
-        if($this->gs->is_smtp == 1){
+        if($this->gs->is_smtp == 1 && $this->mail){
 
             $this->mail->isSMTP();                          // Send using SMTP
             $this->mail->Host       = $this->gs->smtp_host;       // Set the SMTP server to send through
@@ -41,6 +45,7 @@ class geniusMailer
 
     public function sendAutoMail(array $mailData)
     {
+        if(!$this->mail) return false;
 
         $temp = EmailTemplate::where('email_type','=',$mailData['type'])->first();
 
@@ -77,6 +82,8 @@ class geniusMailer
 
     public function sendCustomMail(array $mailData)
     {
+        if(!$this->mail) return false;
+
         try{
 
             //Recipients

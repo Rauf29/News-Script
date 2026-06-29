@@ -1,16 +1,39 @@
 @extends('layouts.front')
-@section('contents')
 @section('meta')
-<title>{{$data->title}}</title>
-<meta name="Description" content="{!! $data->short_description !!}">
-<meta name="Keywords" content="{!! $data->meta_tag !!}">
-<meta property="og:title" content="{{$data->title}}" />
-<meta property="og:description" content="{!! $data->short_description !!}" />
-<meta property="og:image" content="{{asset('assets/images/post/'.$data->image_big)}}" />
-<meta property="og:url" content="{{ url()->current() }}" />
+@php
+    $shareTitle = trim($data->title ?? ($gs->title ?? config('app.name')));
+    $shareDescription = trim(preg_replace('/\s+/', ' ', strip_tags($data->short_description ?: $data->description ?: '')));
+    $shareDescription = $shareDescription !== '' ? $shareDescription : ($gs->title ?? config('app.name'));
+    $shareImage = $data->image_big
+        ? asset('assets/images/post/'.$data->image_big)
+        : ($data->rss_image ?: asset('assets/images/'.$gs->og_baner));
+    $shareUrl = route('frontend.postBySubcategory.details', [$data->category->slug, $data->slug]);
+@endphp
+<title>{{ $shareTitle }}</title>
+<meta name="description" content="{{ $shareDescription }}">
+<meta name="Keywords" content="{{ $data->meta_tag }}">
+<link rel="canonical" href="{{ $shareUrl }}">
+<meta property="og:title" content="{{ $shareTitle }}" />
+<meta property="og:description" content="{{ $shareDescription }}" />
+<meta property="og:image" content="{{ $shareImage }}" />
+<meta property="og:image:secure_url" content="{{ $shareImage }}" />
+<meta property="og:image:alt" content="{{ $shareTitle }}" />
+<meta property="og:image:width" content="800" />
+<meta property="og:image:height" content="450" />
+<meta property="og:url" content="{{ $shareUrl }}" />
 <meta property="og:type" content="article" />
+<meta property="og:site_name" content="{{ $gs->title ?? config('app.name') }}" />
+<meta property="article:published_time" content="{{ optional($data->created_at)->toIso8601String() }}" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $shareTitle }}">
+<meta name="twitter:description" content="{{ $shareDescription }}">
+<meta name="twitter:image" content="{{ $shareImage }}">
+@if($gs->facebook_app_id)
+<meta property="fb:app_id" content="{{ $gs->facebook_app_id }}" />
+@endif
 @endsection
 
+@section('contents')
 <div class="container-fluid">
     <div class="dtl_content_layer px-0 pb-3 mt-3">
         <div class="row">
@@ -455,10 +478,8 @@
                                             <span>মন্তব্য করুন</span>
                                         </p>
                                     </div>
-                                    <div class="fb_comments">
-                                        <div id="wpdevar_comment_1" style="width:100%;text-align:left;">
-		<span style="padding: 10px;font-size:22px;font-family:monospace;color:#000000;"></span>
-		<div class="fb-comments" data-href="{{ url()->current() }}" data-order-by="social" data-numposts="3" data-width="100%" style="display:block;"></div></div><style>#wpdevar_comment_1 span,#wpdevar_comment_1 iframe{width:100% !important;} #wpdevar_comment_1 iframe{max-height: 100% !important;}</style>                                    </div>
+                                    <div class="fb_comments" style="padding:15px;text-align:center;">
+                                        <iframe src="https://www.facebook.com/plugins/comments.php?href={{ urlencode(url()->current()) }}&width=560&app_id={{ $gs->facebook_app_id }}&height=100" width="100%" height="100" style="border:none;overflow:hidden;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>                                    </div>
                                 </div>
                                 <style>
                                     #facebook_comments p.comment {

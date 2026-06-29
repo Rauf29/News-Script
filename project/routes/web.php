@@ -33,9 +33,7 @@ Route::get('/video','Front\FrontendController@video')->name('frontend.video');
 
 
 Route::redirect('admin', 'admin/login');
-Route::get('/test',function(){
-
-})->name('login');
+Route::permanentRedirect('/test', '/');
 Route::get('/print/{id}/{slug}','Front\FrontendController@print')->name('frontend.print');
 Route::prefix('admin')->group(function(){
     Route::get('/login','Admin\LoginController@loginForm')->name('admin.loginForm');
@@ -45,7 +43,9 @@ Route::prefix('admin')->group(function(){
     Route::post('/forgot', 'Admin\LoginController@forgot')->middleware('throttle:3,5')->name('admin.forgot.submit');
     Route::get('/reset-password/{token}', 'Admin\LoginController@showResetForm')->name('admin.reset.password.form');
     Route::post('/reset-password', 'Admin\LoginController@reset')->name('admin.reset.password.submit');
+});
 
+Route::prefix('admin')->middleware('auth:admin')->group(function(){
 
     Route::group(['middleware' => 'permissions:menu_builder'], function () {
         //--------------Menu Builder Area---------------
@@ -569,7 +569,7 @@ Route::prefix('admin')->group(function(){
 
 });
 
-Route::prefix('user')->group(function() {
+Route::prefix('user')->middleware('auth')->group(function() {
     Route::get('/dashboard','User\DashboardController@index')->name('user.dashboard');
     Route::get('/profile', 'User\DashboardController@profile')->name('user.profile');
     Route::post('/profile', 'User\DashboardController@profileUpdate')->name('user.profile.update');
@@ -697,7 +697,6 @@ Route::get('/','Front\FrontendController@index')->name('frontend.index');
 Route::get('/gallery-view/{id}','Front\GalleryController@view')->name('gallery.view');
 Route::get('/gallery-image/{id}','Front\GalleryController@showImage')->name('gallery.image.show');
 Route::get('/tag/{search}','Front\FrontendController@searchByTag')->name('tag.search');
-Route::get('/{category}/{slug}','Front\FrontendController@details')->name('frontend.postBySubcategory.details');
 
 Route::get('finalize', 'Front\FrontendController@finalize');
 
@@ -733,6 +732,17 @@ Route::post('/reset-password', 'Front\ForgotController@reset')->name('user.reset
 Route::get('auth/{provider}', 'Front\SocialRegisterController@redirectToProvider')->name('social.provider');
 Route::get('auth/{provider}/callback', 'Front\SocialRegisterController@handleProviderCallback');
 
+Route::get('/privacy-policy', function () {
+    $gs = App\Models\GeneralSettings::find(1);
+    return view('frontend.privacy', compact('gs'));
+})->name('front.privacy');
+Route::get('/data-deletion', function () {
+    $gs = App\Models\GeneralSettings::find(1);
+    return view('frontend.data-deletion', compact('gs'));
+})->name('front.data-deletion');
+Route::get('/sitemap.xml','Front\SiteMapController@index')->name('sitemap.index');
+Route::get('/sitemap/posts.xml','Front\SiteMapController@posts')->name('sitemap.posts');
+Route::get('/{category}/{slug}','Front\FrontendController@details')->name('frontend.postBySubcategory.details');
 Route::get('/{category}','Front\FrontendController@category')->name('frontend.category');
 
 Route::get('/click/count/{id}','Front\FrontendController@clickCount')->name('frontend.click.count');

@@ -521,7 +521,7 @@ img {
 /* global img size */
 .imgWrep {
     display: block;
-    background: url(https://news.banglawebs.com/news01) center center no-repeat;
+    background: #f0f0f0 center center no-repeat;
     background-size: contain;
     overflow: hidden;
     position: relative;

@@ -831,7 +831,10 @@ class FrontendController extends Controller
     }
 
     public function follower(){
-        return view('frontend.follower');
+        $data['admin'] = Admin::first() ?? new Admin();
+        $data['followers'] = collect();
+        $data['all_posts'] = collect();
+        return view('frontend.follower', $data);
     }
 
     // Refresh Capcha Code

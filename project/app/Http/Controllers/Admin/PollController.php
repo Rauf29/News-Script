@@ -184,8 +184,7 @@ class PollController extends Controller
         $poll_options = $data->child;
 
         foreach($poll_options as  $poll_option){
-            $answer = $poll_option::find($poll_option->id);
-            $answer->delete();
+            $poll_option->delete();
         }
         $data->delete();
         $msg = 'Data Deleted Successfully';

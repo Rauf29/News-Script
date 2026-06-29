@@ -1,10 +1,10 @@
 @extends('layouts.front')
-@section('contents')
- @section('meta')
+@section('meta')
 <title>{{$subcategory}}</title>
 <meta property="og:title" content="{{$subcategory}}" />
 <meta property="og:image" content="{{asset('assets/images/'.$gs->og_baner)}}" />
-@endsection	 	
+@endsection
+@section('contents')
 		
         		 <div id="category_content">
 

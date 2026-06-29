@@ -1,0 +1,9 @@
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: *
+Disallow: /project/
+Disallow: /assets/

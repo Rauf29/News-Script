@@ -77,7 +77,7 @@ class ShortListController extends Controller
             $st = new ShortList();
             $st->post_id = $post_id;
             $st->item_title = $value;
-            $item_photoo = $item_photo[$key];
+            $item_photoo = $item_photo[$key] ?? null;
             if($file = $item_photoo){
                 $img = Image::make($file->getRealPath())->resize(750, 500);
                 $thumbnail = time().Str::random(8).'.jpg';

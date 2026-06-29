@@ -7,6 +7,13 @@ use Illuminate\Foundation\Configuration\Middleware;
 return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
 
+        $middleware->redirectGuestsTo(function ($request) {
+            if ($request->is('admin/*') || $request->is('admin')) {
+                return route('admin.loginForm');
+            }
+            return route('front.LogReg');
+        });
+
         $middleware->replace(
             \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
             \App\Http\Middleware\VerifyCsrfToken::class
@@ -41,4 +48,4 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->create()
     ->usePublicPath(realpath(__DIR__.'/../../'))
-    ->useEnvironmentPath(realpath(__DIR__.'/../vendor/markury/src/'));
+    ->useEnvironmentPath(realpath(__DIR__.'/../'));

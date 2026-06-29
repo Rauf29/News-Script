@@ -9,8 +9,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="TechPeaks Solutions">
-    @yield('meta')
-		<title>{{ $gs->title }}</title>
+    @hasSection('meta')
+        @yield('meta')
+    @else
+        <title>{{ $gs->title }}</title>
+    @endif
+    @if($gs->facebook_app_id)
+    <meta property="fb:app_id" content="{{ $gs->facebook_app_id }}" />
+    @endif
     <link rel="shortcut icon" href="{{asset('assets/images/'.$gs->favicon)}}" type="image/x-icon">
 
     	 {!!$gs->adsense_code!!}
@@ -19,28 +25,7 @@
 
 
 
-<script type="text/javascript">
-/* <![CDATA[ */
-window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/news.banglawebs.com\/news01\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7.1"}};
-/*! This file is auto-generated */
-!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
-/* ]]> */
-</script>
-<style id='wp-emoji-styles-inline-css' type='text/css'>
 
-	img.wp-smiley, img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 0.07em !important;
-		vertical-align: -0.1em !important;
-		background: none !important;
-		padding: 0 !important;
-	}
-</style>
-<link rel='stylesheet' id='wp-block-library-css' href='{{asset('assets/frontend/css/dist/block-library/style.min9704.css?ver=6.7.1')}}' type='text/css' media='all' />
 <style id='classic-theme-styles-inline-css' type='text/css'>
 /*! This file is auto-generated */
 .wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
@@ -74,19 +59,10 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 <link rel='stylesheet' id='responsive-css-css' href='{{asset('assets/frontend/assets/css/responsive9704.css?ver=6.7.1')}}' type='text/css' media='all' />
 <link rel='stylesheet' id='responsive-css-css' href='{{asset('assets/frontend/assets/css/responsive9704.css?ver=6.7.1')}}' type='text/css' media='all' />
 <link rel='stylesheet' id='toastr-css' href='{{asset('assets/admin/css/toastr.css')}}' type='text/css' media='all' />
-<script type="text/javascript" src="{{asset('assets/frontend/js/jquery/jquery.minf43b.js?ver=3.7.1" id="jquery-core-js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/frontend/js/jquery/jquery.minf43b.js?ver=3.7.1')}}" id="jquery-core-js"></script>
 <script type="text/javascript" src="{{asset('assets/frontend/js/jquery/jquery-migrate.min5589.js?ver=3.4.1')}}" id="jquery-migrate-js"></script>
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethisb6db.js?ver=2.3.3#property=67554864d5bedc001907e4fb&amp;product=inline-buttons&amp;source=sharethis-share-buttons-wordpress" id="share-this-share-buttons-mu-js"></script>
-<script type="text/javascript" id="my_loadmore-js-extra">
-/* <![CDATA[ */
-var misha_loadmore_params = {"ajaxurl":"https:\/\/news.banglawebs.com\/news01\/wp-admin\/admin-ajax.php","posts":"{\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"name\":\"\",\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"category_name\":\"\",\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"search_columns\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":true,\"update_post_term_cache\":true,\"update_menu_item_cache\":false,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":10,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"2"};
-/* ]]> */
-</script>
-<script type="text/javascript" src="{{asset('assets/frontend/assets/js/myloadmore9704.js?ver=6.7.1')}}" id="my_loadmore-js"></script>
 
-	<script type="text/javascript">
-	    var ajaxurl = 'wp-admin/admin-ajax.html';
-	</script>
 
 	<style type="text/css">
 		.ajax-calendar{
@@ -197,32 +173,43 @@ var misha_loadmore_params = {"ajaxurl":"https:\/\/news.banglawebs.com\/news01\/w
             display: block !important;
         }
     </style>
-<script src="https://bangla.plus/scripts/bangladatetoday.min.js"></script>
-<script>dateToday('date-today', 'bangla');</script>
-           
 <script>
-                        setInterval(displayTime, 1000);
+function dateToday(id, lang) {
+    var now = new Date();
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var day = days[now.getDay()];
+    var date = now.getDate();
+    var month = months[now.getMonth()];
+    var year = now.getFullYear();
+    var str = day + ', ' + date + ' ' + month + ' ' + year;
+    if (lang === 'bangla') {
+        var bn = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
+        var bnDay = {'Sunday':'রবিবার','Monday':'সোমবার','Tuesday':'মঙ্গলবার','Wednesday':'বুধবার','Thursday':'বৃহস্পতিবার','Friday':'শুক্রবার','Saturday':'শনিবার'};
+        var bnMonths = {'January':'জানুয়ারি','February':'ফেব্রুয়ারি','March':'মার্চ','April':'এপ্রিল','May':'মে','June':'জুন','July':'জুলাই','August':'আগস্ট','September':'সেপ্টেম্বর','October':'অক্টোবর','November':'নভেম্বর','December':'ডিসেম্বর'};
+        str = bnDay[day] + ', ' + date.toString().replace(/\d/g, function(m){ return bn[m]; }) + ' ' + bnMonths[month] + ' ' + year.toString().replace(/\d/g, function(m){ return bn[m]; });
+    }
+    var el = document.getElementById(id);
+    if (el) { el.innerHTML = str; }
+}
+dateToday('date-today', 'bangla');
+</script>
 
+<script>
 function displayTime() {
+    var clock = document.getElementById('Clock');
+    if (!clock) return;
 
     const timeNow = new Date();
-
     let hoursOfDay = timeNow.getHours();
     let minutes = timeNow.getMinutes();
     let seconds = timeNow.getSeconds();
-    let weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    let today = weekDay[timeNow.getDay()];
-    let months = timeNow.toLocaleString("default", {
-        month: "long"
-    });
-    let year = timeNow.getFullYear();
     let period = "AM";
 
     if (hoursOfDay > 12) {
-        hoursOfDay-= 12;
+        hoursOfDay -= 12;
         period = "PM";
     }
-
     if (hoursOfDay === 0) {
         hoursOfDay = 12;
         period = "AM";
@@ -232,19 +219,15 @@ function displayTime() {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    let time = hoursOfDay + ":" + minutes + ":" + seconds + " " + period;
+    var time = hoursOfDay + ":" + minutes + ":" + seconds + " " + period;
+    clock.innerHTML = time;
 
-   document.getElementById('Clock').innerHTML = time ;
-    
     var chars = {'1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯','0':'০','A':'এ','P':'পি','M':'এম'};
-    let str = document.getElementById("Clock").innerHTML; 
-    let res = str.replace(/[1234567890AMP]/g, m => chars[m]);
-    document.getElementById("Clock").innerHTML = res;
-
+    clock.innerHTML = clock.innerHTML.replace(/[1234567890AMP]/g, function(m) { return chars[m]; });
 }
+setInterval(displayTime, 1000);
 displayTime();
-
-                        </script>
+</script>
 						
     
 	
@@ -270,30 +253,18 @@ displayTime();
 
  <link rel='stylesheet' id='dashicons-css' href='{{asset('assets/frontend/css/dashicons.min9704.css?ver=6.7.1')}}' type='text/css' media='all' />
 <link rel='stylesheet' id='thickbox-css' href='{{asset('assets/frontend/js/thickbox/thickbox9704.css?ver=6.7.1')}}' type='text/css' media='all' />
-<script type="text/javascript" id="wp-polls-js-extra">
-/* <![CDATA[ */
-var pollsL10n = {"ajax_url":"https:\/\/news.banglawebs.com\/news01\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"1","show_fading":"1"};
-/* ]]> */
-</script>
+
 <script type="text/javascript" src="{{asset('assets/admin/js/toastr.js')}}"></script>
 {!! Toastr::message() !!}
 <script type="text/javascript" src="{{asset('assets/frontend/assets/js/script.js')}}" id="script-js"></script>
 <script type="text/javascript" src="{{asset('assets/frontend/assets/js/jquery.lightbox.js')}}" id="script_lightbox-js"></script>
 <script type="text/javascript" src="{{asset('assets/frontend/assets/js/jquery.flexslider.js')}}" id="script_flexslider-js"></script>
-<script type="text/javascript" id="thickbox-js-extra">
-/* <![CDATA[ */
-var thickboxL10n = {"next":"Next >","prev":"< Prev","image":"Image","of":"of","close":"Close","noiframes":"This feature requires inline frames. You have iframes disabled or your browser does not support them.","loadingAnimation":"https:\/\/news.banglawebs.com\/news01\/wp-includes\/js\/thickbox\/loadingAnimation.gif"};
-/* ]]> */
-</script>
-<script type="text/javascript" src="{{asset('assets/frontend/js/thickbox/thickboxab87.js?ver=3.1-20121105')}}" id="thickbox-js"></script>
+
 
 <div id="back-top" class="back-top" style="">
     <span></span>
 </div>
-@if($gs->facebook_app_id)
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v22.0&appId={{ $gs->facebook_app_id }}"></script>
-@endif
+
 </body>
 
 

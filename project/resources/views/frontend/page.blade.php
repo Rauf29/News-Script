@@ -1,5 +1,4 @@
 @extends('layouts.front')
-@section('contents')
 @section('meta')
 <title>{{$page->title}}</title>
 <meta name="Description" content="{!! $page->description!!}">
@@ -7,6 +6,7 @@
 <meta property="og:description" content="{!! $page->description!!}" />
 <meta property="og:image" content="{{asset('assets/images/'.$gs->og_baner)}}" />
 @endsection
+@section('contents')
              
                          
  <div class="create-page">

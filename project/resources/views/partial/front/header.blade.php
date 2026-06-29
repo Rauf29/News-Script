@@ -110,7 +110,10 @@ jQuery(document).ready(function($){
                                         </a>
 
                                         <div class="dropdown_menu dropdown-menu dropdown-menu-end dropdownNotification">
-                                            
+                                            <div class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom">
+                                                <span class="fw-bold">ট্রেন্ডিং খবর</span>
+                                                <span class="dropdownNotificationClose btn btn-sm btn-light rounded-circle p-0" style="width:26px;height:26px;font-size:18px;line-height:26px;text-align:center;cursor:pointer;">&times;</span>
+                                            </div>
 											
 											@foreach($is_trendings as $is_trending)	
                                             <div class="border-bottom _dropdown-item clearfix py-2">
@@ -121,10 +124,6 @@ jQuery(document).ready(function($){
                                                    প্রকাশঃ {{$is_trending->createdAt()}} ইং                                               </div>
                                             </div>
                                            @endforeach
-                                            
-                                            
-
-                                            
 
                                         </div>
                                     </span>
@@ -161,7 +160,7 @@ jQuery(document).ready(function($){
 
             <section id="top-nav">
                 <div class="container-fluid">
-                    <div class="d-flex justify-content-center position-relative">
+                    <div class="d-flex justify-content-center align-items-center position-relative">
                         <nav id="mobile_scroll">
                             <ul>
 							   @foreach ($categories as $category)

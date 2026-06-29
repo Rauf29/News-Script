@@ -109,10 +109,6 @@ class RssFeedsController extends Controller
                             if ($enclosure = $item->get_enclosure(0)) {
                                 $type = $enclosure->get_real_type();
                                 if (stristr($type, 'image/')) {
-                                    if (empty($enclosure)) {
-                                        $post->rss_image = '';
-                                    }
-
                                 $post->rss_image = $enclosure->get_link();
                                 }
                             }
@@ -207,10 +203,6 @@ class RssFeedsController extends Controller
                             if ($enclosure = $item->get_enclosure(0)) {
                                 $type = $enclosure->get_real_type();
                                 if (stristr($type, 'image/')) {
-                                    if (empty($enclosure)) {
-                                        $post->rss_image = '';
-                                    }
-
                                 $post->rss_image = $enclosure->get_link();
                                 }
                             }
